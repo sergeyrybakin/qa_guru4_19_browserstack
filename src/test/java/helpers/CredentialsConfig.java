@@ -1,16 +1,19 @@
 package helpers;
 
-import org.aeonbits.owner.Config;
+import org.aeonbits.owner.ConfigFactory;
 
-@Config.Sources({
-        "file:~/w/qa_guru_2021/19_Mobile_1/credentials.properties",
-        "classpath:credentials.properties"
-})
-public interface CredentialsConfig extends Config
+public class CredentialsConfig
 {
-    @Key("login")
-    String login();
-    @Key("password")
-    String password();
 
+    public static String userName() {
+        return getConfig().userName();
+    }
+
+    public static String password() {
+        return getConfig().password();
+    }
+
+    private static WebConfig getConfig() {
+        return ConfigFactory.newInstance().create(WebConfig.class, System.getProperties());
+    }
 }

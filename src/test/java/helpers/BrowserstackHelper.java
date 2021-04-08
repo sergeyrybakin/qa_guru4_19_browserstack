@@ -1,16 +1,14 @@
 package helpers;
 
-import org.aeonbits.owner.ConfigFactory;
+import org.aeonbits.owner.Config;
 
 import static io.restassured.RestAssured.given;
 
 public class BrowserstackHelper {
-    static CredentialsConfig cfg = ConfigFactory
-            .create(CredentialsConfig.class, System.getProperties());
 
     public static String getBrowserstackVideoUrl(String sessionId) {
         String video_url = given()
-                .auth().basic(cfg.login(), cfg.password())
+                .auth().basic(CredentialsConfig.userName(), CredentialsConfig.password())
                 .when()
                 .get("https://api-cloud.browserstack.com/app-automate/sessions/" + sessionId +".json")
                 .then()
@@ -25,7 +23,7 @@ public class BrowserstackHelper {
 
     public static String getBSPublicLink(String sessionId){
         String publicUrl = given()
-                .auth().basic(cfg.login(), cfg.password())
+                .auth().basic(CredentialsConfig.userName(), CredentialsConfig.password())
                 .when()
                 .get("https://api-cloud.browserstack.com/app-automate/sessions/" + sessionId +".json")
                 .then()
