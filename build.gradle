@@ -9,9 +9,11 @@ repositories {
 }
 
 def allureVersion = "2.13.8",
+    ownerVersion = "1.0.12",
     selenideVersion = "5.20.1",
     junitVersion = "5.7.1",
-    ownerVersion = "1.0.12",
+    aspectjVersion = "1.9.6",
+    appiumVersion = "7.3.0",
     restassuredVersion = "4.3.3"
 
 allure {
@@ -26,10 +28,12 @@ allure {
 
 dependencies {
     implementation (
-            "org.aspectj:aspectjweaver:1.9.6",
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "org.aspectj:aspectjweaver:$aspectjVersion",
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
-            "io.appium:java-client:7.3.0",
+            "io.appium:java-client:$appiumVersion",
+            "io.rest-assured:rest-assured:$restassuredVersion",
             "org.junit.jupiter:junit-jupiter-api:$junitVersion",
             "org.junit.jupiter:junit-jupiter-params:$junitVersion")
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
